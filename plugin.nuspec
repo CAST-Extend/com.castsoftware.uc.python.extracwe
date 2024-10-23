@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+	<metadata>
+		<id>com.castsoftware.uc.python.extracwe</id>
+		<version>1.0.13-beta</version>
+		<title>Python Analyzer Extra CWE</title>
+		<authors>User Community</authors>
+		<owners>CAST</owners>
+		<projectUrl>https://github.com/CAST-Extend/com.castsoftware.uc.python</projectUrl>
+		<licenseUrl>http://www.castsoftware.com/ps/doc/extension/license</licenseUrl>
+		<iconUrl>https://raw.githubusercontent.com/StefaniaO-CAST/com.castsoftware.uc.python/master/python.png</iconUrl>
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<description>This Field Extension analyzes Python customization language</description>
+		<tags>PYTHON Quality</tags>
+		<releaseNotes>Please refer to https://docs.python.org/3/ for references</releaseNotes>
+		<dependencies>
+			<dependency id="CAIP" version="8.3.0" />
+			<dependency id="com.castsoftware.internal.platform" version="0.9.21" />
+			<dependency id="com.castsoftware.html5" version="2.2.3-funcrel" />
+			<dependency id="com.castsoftware.wbslinker" version="1.7.31" />
+			<dependency id="com.castsoftware.python" version="1.5.4-funcrel" />
+		</dependencies>
+	</metadata>
+</package>
