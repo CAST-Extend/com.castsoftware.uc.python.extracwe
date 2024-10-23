@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <metric id="2981100" type="quality-rule" originalName="Avoid calling a function in a condition loop" thresholdToGet1="90.0" thresholdToGet2="95.0" thresholdToGet3="99.0" thresholdToGet4="100.0" />
+  <metric id="2981102" type="quality-rule" originalName="Avoid nested loop" thresholdToGet1="90.0" thresholdToGet2="95.0" thresholdToGet3="99.0" thresholdToGet4="100.0" />
+  <metric id="2981104" type="quality-rule" originalName="Avoid String concatenation in loops" thresholdToGet1="90.0" thresholdToGet2="95.0" thresholdToGet3="99.0" thresholdToGet4="100.0" />
+ </root>

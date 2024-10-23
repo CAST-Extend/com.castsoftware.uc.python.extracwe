@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <metric id="1061113" type="technical-criterion" originalName="CWE-1050 - Excessive Platform Resource Consumption within a Loop" contributorId="2981100" contributorType="quality-rule" contributorOriginalName="Avoid calling a function in a condition loops" critical="false" weight="7" />  
+  <metric id="1061113" type="technical-criterion" originalName="CWE-1050 - Excessive Platform Resource Consumption within a Loop" contributorId="2981102" contributorType="quality-rule" contributorOriginalName="Avoid nested loops" critical="false" weight="5" />
+  <metric id="1061109" type="technical-criterion" originalName="CWE-1046 - Creation of Immutable Text Using String Concatenation" contributorId="2981104" contributorType="quality-rule" contributorOriginalName="Avoid String concatenation in loops" critical="false" weight="5" />
+  <metric id="61024" type="technical-criterion" originalName="Programming Practices - Structuredness" contributorId="2981100" contributorType="quality-rule" contributorOriginalName="Avoid calling a function in a condition loops" critical="false" weight="7" /> 
+  <metric id="61024" type="technical-criterion" originalName="Programming Practices - Structuredness" contributorId="2981102" contributorType="quality-rule" contributorOriginalName="Avoid nested loops" critical="false" weight="7" />  
+  <metric id="61024" type="technical-criterion" originalName="Programming Practices - Structuredness" contributorId="2981104" contributorType="quality-rule" contributorOriginalName="Avoid String concatenation in loops" critical="false" weight="7" />  
+
+
+</root>

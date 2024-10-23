@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>  
+  <!-- High part of metric tree -->
+  <metric id="-1" type="N/A" originalName="N/A" active="N/A" detached="N/A" ignored="false" />
+  <metric id="1061113" type="technical-criterion" originalName="CWE-1050 - Excessive Platform Resource Consumption within a Loop" active="true" detached="false" ignored="false" />  
+  <metric id="1061109" type="technical-criterion" originalName="CWE-1046 - Creation of Immutable Text Using String Concatenation" active="true" detached="false" ignored="false" />
+  <metric id="61024" type="technical-criterion" originalName="Programming Practices - Structuredness" active="N/A" detached="N/A" ignored="N/A" />  
+  <!-- Low part of metric tree -->  
+  <metric id="2981100" type="quality-rule" originalName="Avoid calling a function in a condition loop" active="true" detached="false" ignored="false" />
+  <metric id="2981102" type="quality-rule" originalName="Avoid nested loops" active="true" detached="false" ignored="false" />
+  <metric id="2981104" type="quality-rule" originalName="Avoid String concatenation in loops" active="true" detached="false" ignored="false" />
+</root>

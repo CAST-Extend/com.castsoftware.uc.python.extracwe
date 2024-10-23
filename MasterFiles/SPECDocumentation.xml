@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<metric id="2981100" type="quality-rule" originalName="Avoid calling a function in a condition loop" section="associatedValueName">
+		<english>Avoid calling a function in a condition loop</english>
+	</metric>
+	<metric id="2981100" type="quality-rule" originalName="Avoid calling a function in a condition loop" section="description">
+		<english>TODO</english>
+	</metric>
+	<metric id="2981100" type="quality-rule" originalName="Avoid calling a function in a condition loop" section="name">
+		<english>Avoid calling a function in a condition loop</english>
+	</metric>
+	<metric id="2981100" type="quality-rule" originalName="Avoid calling a function in a condition loop" section="output">
+		<english>TO DO </english>
+	</metric>
+	<metric id="2981100" type="quality-rule" originalName="Avoid calling a function in a condition loop" section="rationale">
+		<english>As a loop condition will be evaluated at each iteration, any function call it contains will be called at each time. Each time it is possible, prefer condition expressions using only variables and literals.
+When calling a function in an end loop, the function will be computed for each loop iteration and will decrease dramatically performances.</english>
+	</metric>
+	<metric id="2981100" type="quality-rule" originalName="Avoid calling a function in a condition loop" section="reference">
+		<english>https://technologies.castsoftware.com/rules?s=loop%7Cqualityrules%7C1020006%20ASCPEM-PRF-8%20CWE-1050</english>
+	</metric>
+	<metric id="2981100" type="quality-rule" originalName="Avoid calling a function in a condition loop" section="remediation">
+		<english>Use a variable to store the result of a function and use it as the loop termination</english>
+	</metric>
+	<metric id="2981100" type="quality-rule" originalName="Avoid calling a function in a condition loop" section="remediationSample">
+		<english>TO DO</english>
+	</metric>
+	<metric id="2981100" type="quality-rule" originalName="Avoid calling a function in a condition loop" section="sample">
+		<english>TODO</english>
+	</metric>
+	<metric id="2981100" type="quality-rule" originalName="Avoid calling a function in a condition loop" section="total">
+		<english>TO DO </english>
+	</metric>
+	<metric id="2981102" type="quality-rule" originalName="Avoid nested loop" section="associatedValueName">
+		<english>Avoid nested loop</english>
+	</metric>
+	<metric id="2981102" type="quality-rule" originalName="Avoid nested loop" section="description">
+		<english>This rule finds all loops containing nested loops. Nested loops can be replaced by redesigning data with hashmap, or in some contexts, by using specialized high level API</english>
+	</metric>
+	<metric id="2981102" type="quality-rule" originalName="Avoid nested loop" section="name">
+		<english>Avoid nested loop</english>
+	</metric>
+	<metric id="2981102" type="quality-rule" originalName="Avoid nested loop" section="output">
+		<english>TO DO </english>
+	</metric>
+	<metric id="2981102" type="quality-rule" originalName="Avoid nested loop" section="rationale">
+		<english>Two O(n) algorithms chained are always more efficient than a single O(n^2) algorithm.</english>
+	</metric>
+	<metric id="2981102" type="quality-rule" originalName="Avoid nested loop" section="reference">
+		<english>https://dev.to/leandronsp/how-to-reduce-the-time-complexity-of-nested-loops-1lkd</english>
+	</metric>
+	<metric id="2981102" type="quality-rule" originalName="Avoid nested loop" section="remediation">
+		<english>Use a variable to store the result of a function and use it as the loop termination</english>
+	</metric>
+	<metric id="2981102" type="quality-rule" originalName="Avoid nested loop" section="remediationSample">
+		<english>TODO</english>
+	</metric>
+	<metric id="2981102" type="quality-rule" originalName="Avoid nested loop" section="sample">
+		<english>TO DO</english>
+	</metric>
+	<metric id="2981102" type="quality-rule" originalName="Avoid nested loop" section="total">
+		<english>TO DO</english>
+	</metric>
+	<metric id="2981104" type="quality-rule" originalName="Avoid String concatenation in loops" section="associatedValueName">
+		<english>Avoid String concatenation in loops</english>
+	</metric>
+	<metric id="2981104" type="quality-rule" originalName="Avoid String concatenation in loops" section="description">
+		<english>TODO</english>
+	</metric>
+	<metric id="2981104" type="quality-rule" originalName="Avoid String concatenation in loops" section="name">
+		<english>Avoid String concatenation in loops</english>
+	</metric>
+	<metric id="2981104" type="quality-rule" originalName="Avoid String concatenation in loops" section="output">
+		<english>TO DO </english>
+	</metric>
+	<metric id="2981104" type="quality-rule" originalName="Avoid String concatenation in loops" section="rationale">
+		<english>TODO.</english>
+	</metric>
+	<metric id="2981104" type="quality-rule" originalName="Avoid String concatenation in loops" section="reference">
+		<english>https://dev.to/leandronsp/how-to-reduce-the-time-complexity-of-nested-loops-1lkd</english>
+	</metric>
+	<metric id="2981104" type="quality-rule" originalName="Avoid String concatenation in loops" section="remediation">
+		<english>TODO</english>
+	</metric>
+	<metric id="2981104" type="quality-rule" originalName="Avoid String concatenation in loops" section="remediationSample">
+		<english>TODO</english>
+	</metric>
+	<metric id="2981102" type="quality-rule" originalName="Avoid String concatenation in loops" section="sample">
+		<english>TO DO</english>
+	</metric>
+	<metric id="2981104" type="quality-rule" originalName="Avoid String concatenation in loops" section="total">
+		<english>TO DO</english>
+	</metric>
+</root>
