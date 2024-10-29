@@ -12,18 +12,22 @@ class FunctionLoopsApplicationExtension(ApplicationLevelExtension):
     nbViolationCallingFunctionInConditionLoop = 0
     nbViolationNestedLoops = 0
     nbViolationConcatStringInLoop = 0
+    nbOpenCloseFileLoops = 0
     
     # one RF for multiples patterns (launched by SDK with an OR) - first pattern(s) for skipping the comments (match first)
     rfLoop = ReferenceFinder()
-    #rfLoop.add_pattern('COMMENTEDline1'     , before='', element = "^\s*#.*$|#.*$", after='')
-    #rfLoop.add_pattern('COMMENTEDline2'     , before='', element = "\s#", after='')
+
+    rfLoop.add_pattern('COMMENTEDline1'     , before='', element = "^\s*#.*$", after='')
+    rfLoop.add_pattern('COMMENTEDline2'     , before='', element = "'''[\s\S]*?'''", after='')
+    rfLoop.add_pattern('COMMENTEDline3'     , before='', element = " ('''[\s\S]*?'''|\"\"\"[\s\S]*?\"\"\")", after='')
+   
   
     rfLoop.add_pattern('whileCallingFunction', before='', element = "while\s+\w+\s*[<>=!]+\s*\w+\s*\(.*\)\s*:" , after='')
     rfLoop.add_pattern('forCallingFunction' , before='', element = "for\s+\w+\s+in\s+range\s*\(\s*\w+\s*\(.*\)\s*\)\s*:"  , after='')
-    #rfLoop.add_pattern('concatStringInLoop1' , before='', element = "(for|while)\s*\(.*?\)\s*:\s*(\n|.)*?\b\w+\s*\+=\s*\".*?\"|\b\w+\s*\+=\s*\w+\s*\+.*"  , after='')
-    #rfLoop.add_pattern('concatStringInLoop2' , before='', element = "(for|while)\s*\(.*\):\s*(.|\n)*?\n\s*.*\+=\s*[\"'].*[\"']"  , after='')
+    
+    rfLoop.add_pattern('OpenCloseFileInLoop1' , before='', element = "(for|while)\s+[^\n]*:\s*(\n\s*)*(with\s+open\([^\)]+\)\s+as\s+[^\n:]+:|[^\n]*open\([^\)]+\)[^\n]*\n[^\n]*\.close\(\))"  , after='')
+    rfLoop.add_pattern('OpenCloseFileInLoop2' , before='', element = "(for|while)\s+[^\n]*:\s*\n\s*.*open\([^\)]*\)\s*\n(?:[^\n]*\n)*?\s*.*\.close\(\)"  , after='') # slo per Open/close no with open
     #fLoop.add_pattern('concatStringInLoop3' , before='', element = "(for\s+\w+\s+in\s+.*:\s*|\bwhile\s+.*:\s*)[\w\[\]]+\s*\+=\s*\w+"  , after='')
-
 
     def scan_program(self, application, file):
         logging.debug("INIT scan_program : file id: >" +str(file.id))
@@ -49,10 +53,19 @@ class FunctionLoopsApplicationExtension(ApplicationLevelExtension):
                     #if str(artifact.get_type()).startswith("CAST_Python_Source") or str(artifact.get_type()).startswith("CAST_Python_Method"):
                     if str(artifact.get_type()).startswith("CAST_Python_"):
                         artifact.save_violation('Python_Loops_CustomMetrics.CIT_AvoidFunctionInLoopRule', reference.bookmark)
-                        #file.save_violation('Python_Loops_CustomMetrics.CIT_AvoidFunctionInLoopRule', reference.bookmark)
                         self.nbViolationCallingFunctionInConditionLoop += 1
                         logging.debug("saving violation for artifact type >" +str(artifact.get_type())+ " - #: "+ str(self.nbViolationCallingFunctionInConditionLoop))
                 
+                if  reference.pattern_name in ['OpenCloseFileInLoop1', 'OpenCloseFileInLoop2'] :
+                    logging.info("GOTCHA ! Found " + reference.pattern_name + " - " + str(reference.value) + " - "+ str(file)) 
+                    artifact, bookm  = my_find_most_specific_object(file,reference.bookmark.begin_line, 1)
+                    if str(artifact.get_type()).startswith("CAST_Python_"):
+                        #artifact.save_violation('Python_Loops_CustomMetrics.CIT_AvoidFunctionInLoopRule', reference.bookmark)
+                        self.nbOpenCloseFileLoops += 1
+                        logging.debug("saving violation for artifact type >" +str(artifact.get_type())+ " - #: "+ str(self.nbOpenCloseFileLoops))
+                
+                    
+                    
     def scan_file_for_nested_loop(self, application, file):
         logging.info("INIT scan_file for nested loop : file id: >" +str(file.id))
         
@@ -69,32 +82,39 @@ class FunctionLoopsApplicationExtension(ApplicationLevelExtension):
         except FileNotFoundError:
             logging.warning("Wrong file or file path, from Vn-1 or previous " + str(file))
         else: 
-            nested_loops, tree = find_nested_loops(python_code, None)
-            if nested_loops:
-                logging.info("Nested loops found in file %s at:"%(file))
-                for lineno, col_offset, loop_type in nested_loops:
-                    logging.info("From Line %s:%s - %s loop" % (lineno, col_offset, loop_type))
-                    artifact, bookm = my_find_most_specific_object(file,lineno, col_offset)
-                    logging.info("Artifact: %s" %(artifact.get_type()))
-                    if str(artifact.get_type()).startswith("CAST_Python_") or str(artifact.get_type()).startswith("sourceFile"):
-                        artifact.save_violation('Python_Loops_CustomMetrics.CIT_AvoidNestedLoops', bookm)
-                        self.nbViolationNestedLoops += 1
-                        logging.info("saving nested loop violation for artifact type >" +str(artifact.get_type())+ " - #: "+ str(self.nbViolationNestedLoops))
-            else:
-                logging.info("Nested loops not found in file %s at:"%(file))
-            logging.info("scan file %s for string concat in loops:"%(file.get_path()))
-            stringconcat, tree = find_string_concat_in_loops(python_code, tree)  
-            if stringconcat:
-                logging.info("String concat in loop found in file %s at:"%(file))
-                for lineno, col_offset in stringconcat:
-                    logging.info("Strig concat riga: %s, colonna: %s" %(lineno, col_offset))
-                    artifact, bookm = my_find_most_specific_object(file,lineno, col_offset)
-                    logging.info("Artifact: %s" %(artifact.get_type()))
-                    if str(artifact.get_type()).startswith("CAST_Python_") or str(artifact.get_type()).startswith("sourceFile"):
-                            artifact.save_violation('Python_Loops_CustomMetrics.CIT_AvoidStringConcatInLoop', bookm)
-                            self.nbViolationConcatStringInLoop += 1
-                            logging.info("saving strig concat loop violation for artifact type >" +str(artifact.get_type())+ " - #: "+ str(self.nbViolationConcatStringInLoop))
-
+            try: 
+                nested_loops, tree = find_nested_loops(python_code, None)
+                if nested_loops:
+                    logging.info("Nested loops found in file %s at:"%(file))
+                    for lineno, col_offset, loop_type in nested_loops:
+                        logging.info("From Line %s:%s - %s loop" % (lineno, col_offset, loop_type))
+                        artifact, bookm = my_find_most_specific_object(file,lineno, col_offset)
+                        logging.info("Artifact: %s" %(artifact.get_type()))
+                        if str(artifact.get_type()).startswith("CAST_Python_") or str(artifact.get_type()).startswith("sourceFile"):
+                            artifact.save_violation('Python_Loops_CustomMetrics.CIT_AvoidNestedLoops', bookm)
+                            self.nbViolationNestedLoops += 1
+                            logging.info("saving nested loop violation for artifact type >" +str(artifact.get_type())+ " - #: "+ str(self.nbViolationNestedLoops))
+                else:
+                    logging.info("Nested loops not found in file %s at:"%(file))
+            except Exception as e:
+                logging.error("Si è verificato un errore durante la ricerca dei nested loops: %s"%(e))
+            try: 
+                logging.info("scan file %s for string concat in loops:"%(file.get_path()))
+                if not tree:
+                    tree = None 
+                stringconcat, tree = find_string_concat_in_loops(python_code, tree)  
+                if stringconcat:
+                    logging.info("String concat in loop found in file %s at:"%(file))
+                    for lineno, col_offset in stringconcat:
+                        logging.info("Strig concat riga: %s, colonna: %s" %(lineno, col_offset))
+                        artifact, bookm = my_find_most_specific_object(file,lineno, col_offset)
+                        logging.info("Artifact: %s" %(artifact.get_type()))
+                        if str(artifact.get_type()).startswith("CAST_Python_") or str(artifact.get_type()).startswith("sourceFile"):
+                                artifact.save_violation('Python_Loops_CustomMetrics.CIT_AvoidStringConcatInLoop', bookm)
+                                self.nbViolationConcatStringInLoop += 1
+                                logging.info("saving strig concat loop violation for artifact type >" +str(artifact.get_type())+ " - #: "+ str(self.nbViolationConcatStringInLoop))
+            except Exception as e:
+                logging.error("Si è verificato un errore nella ricerca delle string concatenation: %s"%(e))
               
     def end_application(self, application):
         logging.info("end_application: "+ application.get_name())
@@ -130,6 +150,7 @@ class FunctionLoopsApplicationExtension(ApplicationLevelExtension):
         logging.info("STATISTICS: Number of anti-pattern occurrences for function calling  in test condition  Loop patterns: " + str(self.nbViolationCallingFunctionInConditionLoop))
         logging.info("STATISTICS: Number of anti-pattern occurrences for concat string in loop patterns: " + str(self.nbViolationConcatStringInLoop))
         logging.info("STATISTICS: Number of anti-pattern occurrences for nested Loop patterns: " + str(self.nbViolationNestedLoops))
+        logging.info("STATISTICS: Number of anti-pattern occurrences for open/close File in loop patterns: " + str(self.nbOpenCloseFileLoops))
 
 
 # sent by MRO - email Tuesday, March 3, 2020 5:35 PM, subject: RE: Java QR en end_application - Avoid loops with always true exit condition
