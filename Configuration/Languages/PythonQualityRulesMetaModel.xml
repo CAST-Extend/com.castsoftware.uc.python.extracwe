@@ -43,5 +43,13 @@
             <attribute name="ACCESS_HTML" intValue="1"/>
             <attribute name="ACCESS_CVS" intValue="1"/>
         </property>
+        <property name="CIT_AvoidOpenCloseInLoop" type="integer" merge="sum" id="2981004">
+            <description>Avoid nested loops</description>
+            <attribute name="INF_TYPE" intValue="2981000"/>
+            <attribute name="INF_SUB_TYPE" intValue="4"/>     
+            <attribute name="ACCESS_APPVIEW" intValue="1"/>
+            <attribute name="ACCESS_HTML" intValue="1"/>
+            <attribute name="ACCESS_CVS" intValue="1"/>
+        </property>
      </category>	
 </metaModel>
