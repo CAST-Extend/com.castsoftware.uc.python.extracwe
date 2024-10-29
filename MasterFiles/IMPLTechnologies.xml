@@ -3,4 +3,5 @@
   <metric id="2981100" type="quality-rule" originalName="Avoid calling a function in a condition loop" filter="1021000" filterLabel="Python" />
   <metric id="2981102" type="quality-rule" originalName="Avoid nested loops" filter="1021000" filterLabel="Python" />
   <metric id="2981104" type="quality-rule" originalName="Avoid String concatenation in loops" filter="1021000" filterLabel="Python" />
- </root>
+  <metric id="2981106" type="quality-rule" originalName="Avoid OPEN/CLOSE inside loops" filter="1021000" filterLabel="Python" />
+  </root>

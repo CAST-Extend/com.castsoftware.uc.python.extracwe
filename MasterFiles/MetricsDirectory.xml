@@ -9,4 +9,5 @@
   <metric id="2981100" type="quality-rule" originalName="Avoid calling a function in a condition loop" active="true" detached="false" ignored="false" />
   <metric id="2981102" type="quality-rule" originalName="Avoid nested loops" active="true" detached="false" ignored="false" />
   <metric id="2981104" type="quality-rule" originalName="Avoid String concatenation in loops" active="true" detached="false" ignored="false" />
+  <metric id="2981106" type="quality-rule" originalName="Avoid OPEN/CLOSE inside loops" active="true" detached="false" ignored="false" />
 </root>

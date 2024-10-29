@@ -77,7 +77,7 @@ When calling a function in an end loop, the function will be computed for each l
 		<english>TODO.</english>
 	</metric>
 	<metric id="2981104" type="quality-rule" originalName="Avoid String concatenation in loops" section="reference">
-		<english>https://dev.to/leandronsp/how-to-reduce-the-time-complexity-of-nested-loops-1lkd</english>
+		<english>TODO</english>
 	</metric>
 	<metric id="2981104" type="quality-rule" originalName="Avoid String concatenation in loops" section="remediation">
 		<english>TODO</english>
@@ -85,10 +85,44 @@ When calling a function in an end loop, the function will be computed for each l
 	<metric id="2981104" type="quality-rule" originalName="Avoid String concatenation in loops" section="remediationSample">
 		<english>TODO</english>
 	</metric>
-	<metric id="2981102" type="quality-rule" originalName="Avoid String concatenation in loops" section="sample">
+	<metric id="2981104" type="quality-rule" originalName="Avoid String concatenation in loops" section="sample">
 		<english>TO DO</english>
 	</metric>
 	<metric id="2981104" type="quality-rule" originalName="Avoid String concatenation in loops" section="total">
 		<english>TO DO</english>
 	</metric>
+	<metric id="2981106" type="quality-rule" originalName="Avoid OPEN/CLOSE inside loops" section="associatedValueName">
+		<english>Avoid String concatenation in loops</english>
+	</metric>
+	<metric id="2981106" type="quality-rule" originalName="Avoid OPEN/CLOSE inside loops" section="description">
+		<english>TODO</english>
+	</metric>
+	<metric id="2981106" type="quality-rule" originalName="Avoid OPEN/CLOSE inside loops" section="name">
+		<english>Avoid String concatenation in loops</english>
+	</metric>
+	<metric id="2981106" type="quality-rule" originalName="Avoid OPEN/CLOSE inside loops" section="output">
+		<english>TO DO </english>
+	</metric>
+	<metric id="2981106" type="quality-rule" originalName="Avoid OPEN/CLOSE inside loops" section="rationale">
+		<english>TODO.</english>
+	</metric>
+	<metric id="2981106" type="quality-rule" originalName="Avoid OPEN/CLOSE inside loops" section="reference">
+		<english>TODO</english>
+	</metric>
+	<metric id="2981106" type="quality-rule" originalName="Avoid OPEN/CLOSE inside loops" section="remediation">
+		<english>TODO</english>
+	</metric>
+	<metric id="2981106" type="quality-rule" originalName="Avoid OPEN/CLOSE inside loops" section="remediationSample">
+		<english>TODO</english>
+	</metric>
+	<metric id="2981106" type="quality-rule" originalName="Avoid OPEN/CLOSE inside loops" section="sample">
+		<english>TO DO</english>
+	</metric>
+	<metric id="2981106" type="quality-rule" originalName="Avoid OPEN/CLOSE inside loops" section="total">
+		<english>TO DO</english>
+	</metric>
+
+
+
+	
 </root>
